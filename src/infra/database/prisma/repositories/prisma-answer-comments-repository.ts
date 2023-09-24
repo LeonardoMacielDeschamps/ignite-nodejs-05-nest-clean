@@ -3,7 +3,7 @@ import { AnswerCommentsRepository } from '@/domain/forum/application/repositorie
 import { AnswerComment } from '@/domain/forum/enterprise/entities/answer-comment'
 import { Injectable } from '@nestjs/common'
 
-Injectable()
+@Injectable()
 export class PrismaAnswerCommentsRepository
   implements AnswerCommentsRepository
 {

@@ -2,7 +2,7 @@ import { AnswerAttachmentsRepository } from '@/domain/forum/application/reposito
 import { AnswerAttachment } from '@/domain/forum/enterprise/entities/answer-attachment'
 import { Injectable } from '@nestjs/common'
 
-Injectable()
+@Injectable()
 export class PrismaAnswerAttachmentsRepository
   implements AnswerAttachmentsRepository
 {
