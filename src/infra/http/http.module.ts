@@ -11,7 +11,9 @@ import { EditQuestionController } from './controllers/edit-question.controller'
 import { DeleteQuestionController } from './controllers/delete-question.controller'
 import { GetQuestionBySlugController } from './controllers/get-question-by-slug.controller'
 import { FetchRecentQuestionsController } from './controllers/fetch-recent-questions.controller'
+
 import { CommentOnQuestionController } from './controllers/comment-on-question.controller'
+import { DeleteQuestionCommentController } from './controllers/delete-question-comment.controller'
 
 import { AnswerQuestionController } from './controllers/answer-question.controller'
 import { EditAnswerController } from './controllers/edit-answer.controller'
@@ -27,7 +29,9 @@ import { EditQuestionUseCase } from '@/domain/forum/application/use-cases/edit-q
 import { DeleteQuestionUseCase } from '@/domain/forum/application/use-cases/delete-question'
 import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/get-question-by-slug'
 import { FetchRecentQuestionsUseCase } from '@/domain/forum/application/use-cases/fetch-recent-questions'
+
 import { CommentOnQuestionUseCase } from '@/domain/forum/application/use-cases/comment-on-question'
+import { DeleteQuestionCommentUseCase } from '@/domain/forum/application/use-cases/delete-question-comment'
 
 import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answer-question'
 import { EditAnswerUseCase } from '@/domain/forum/application/use-cases/edit-answer'
@@ -46,7 +50,9 @@ import { ChooseQuestionBestAnswerUseCase } from '@/domain/forum/application/use-
     DeleteQuestionController,
     GetQuestionBySlugController,
     FetchRecentQuestionsController,
+
     CommentOnQuestionController,
+    DeleteQuestionCommentController,
 
     AnswerQuestionController,
     EditAnswerController,
@@ -63,7 +69,9 @@ import { ChooseQuestionBestAnswerUseCase } from '@/domain/forum/application/use-
     DeleteQuestionUseCase,
     GetQuestionBySlugUseCase,
     FetchRecentQuestionsUseCase,
+
     CommentOnQuestionUseCase,
+    DeleteQuestionCommentUseCase,
 
     AnswerQuestionUseCase,
     EditAnswerUseCase,
