@@ -7,7 +7,7 @@ import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository
 let sut: DeleteAnswerCommentUseCase
 
-describe('Delete Answer Comment', () => {
+describe('Delete answer comment', () => {
   beforeEach(() => {
     inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository()
 

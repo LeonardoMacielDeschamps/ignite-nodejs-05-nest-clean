@@ -8,7 +8,7 @@ import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository
 let sut: DeleteQuestionCommentUseCase
 
-describe('Delete Question Comment', () => {
+describe('Delete question comment', () => {
   beforeEach(() => {
     inMemoryQuestionCommentsRepository =
       new InMemoryQuestionCommentsRepository()

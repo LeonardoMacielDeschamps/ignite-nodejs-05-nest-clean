@@ -6,7 +6,7 @@ import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository
 let sut: FetchAnswerCommentsUseCase
 
-describe('Fetch Answer Comments', () => {
+describe('Fetch answer comments', () => {
   beforeEach(() => {
     inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository()
     sut = new FetchAnswerCommentsUseCase(inMemoryAnswerCommentsRepository)
