@@ -12,14 +12,15 @@ import { DeleteQuestionController } from './controllers/delete-question.controll
 import { GetQuestionBySlugController } from './controllers/get-question-by-slug.controller'
 import { FetchRecentQuestionsController } from './controllers/fetch-recent-questions.controller'
 
-import { CommentOnQuestionController } from './controllers/comment-on-question.controller'
-import { DeleteQuestionCommentController } from './controllers/delete-question-comment.controller'
-
 import { AnswerQuestionController } from './controllers/answer-question.controller'
 import { EditAnswerController } from './controllers/edit-answer.controller'
 import { DeleteAnswerController } from './controllers/delete-answer.controller'
 import { FetchQuestionAnswersController } from './controllers/fetch-question-answers.controller'
 import { ChooseQuestionBestAnswerController } from './controllers/choose-question-best-answer.controller'
+
+import { CommentOnQuestionController } from './controllers/comment-on-question.controller'
+import { DeleteQuestionCommentController } from './controllers/delete-question-comment.controller'
+import { CommentOnAnswerController } from './controllers/comment-on-answer.controller'
 
 import { RegisterStudentUseCase } from '@/domain/forum/application/use-cases/register-student'
 import { AuthenticateStudentUseCase } from '@/domain/forum/application/use-cases/authenticate-student'
@@ -30,14 +31,15 @@ import { DeleteQuestionUseCase } from '@/domain/forum/application/use-cases/dele
 import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/get-question-by-slug'
 import { FetchRecentQuestionsUseCase } from '@/domain/forum/application/use-cases/fetch-recent-questions'
 
-import { CommentOnQuestionUseCase } from '@/domain/forum/application/use-cases/comment-on-question'
-import { DeleteQuestionCommentUseCase } from '@/domain/forum/application/use-cases/delete-question-comment'
-
 import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answer-question'
 import { EditAnswerUseCase } from '@/domain/forum/application/use-cases/edit-answer'
 import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/delete-answer'
 import { FetchQuestionAnswersUseCase } from '@/domain/forum/application/use-cases/fetch-question-answers'
 import { ChooseQuestionBestAnswerUseCase } from '@/domain/forum/application/use-cases/choose-question-best-answer'
+
+import { CommentOnQuestionUseCase } from '@/domain/forum/application/use-cases/comment-on-question'
+import { DeleteQuestionCommentUseCase } from '@/domain/forum/application/use-cases/delete-question-comment'
+import { CommentOnAnswerUseCase } from '@/domain/forum/application/use-cases/comment-on-answer'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -51,14 +53,15 @@ import { ChooseQuestionBestAnswerUseCase } from '@/domain/forum/application/use-
     GetQuestionBySlugController,
     FetchRecentQuestionsController,
 
-    CommentOnQuestionController,
-    DeleteQuestionCommentController,
-
     AnswerQuestionController,
     EditAnswerController,
     DeleteAnswerController,
     FetchQuestionAnswersController,
     ChooseQuestionBestAnswerController,
+
+    CommentOnQuestionController,
+    DeleteQuestionCommentController,
+    CommentOnAnswerController,
   ],
   providers: [
     RegisterStudentUseCase,
@@ -70,14 +73,15 @@ import { ChooseQuestionBestAnswerUseCase } from '@/domain/forum/application/use-
     GetQuestionBySlugUseCase,
     FetchRecentQuestionsUseCase,
 
-    CommentOnQuestionUseCase,
-    DeleteQuestionCommentUseCase,
-
     AnswerQuestionUseCase,
     EditAnswerUseCase,
     DeleteAnswerUseCase,
     FetchQuestionAnswersUseCase,
     ChooseQuestionBestAnswerUseCase,
+
+    CommentOnQuestionUseCase,
+    DeleteQuestionCommentUseCase,
+    CommentOnAnswerUseCase,
   ],
 })
 export class HttpModule {}
