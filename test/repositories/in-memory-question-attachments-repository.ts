@@ -4,6 +4,16 @@ import { QuestionAttachment } from '@/domain/forum/enterprise/entities/question-
 export class InMemoryQuestionAttachmentsRepository
   implements QuestionAttachmentsRepository
 {
+  public items: QuestionAttachment[] = []
+
+  async findManyByQuestionId(questionId: string) {
+    const questionAttachment = this.items.filter(
+      (item) => item.questionId.toString() === questionId,
+    )
+
+    return questionAttachment
+  }
+
   async createMany(attachments: QuestionAttachment[]): Promise<void> {
     this.items.push(...attachments)
   }
@@ -14,16 +24,6 @@ export class InMemoryQuestionAttachmentsRepository
     })
 
     this.items = questionAttachments
-  }
-
-  public items: QuestionAttachment[] = []
-
-  async findManyByQuestionId(questionId: string) {
-    const questionAttachment = this.items.filter(
-      (item) => item.questionId.toString() === questionId,
-    )
-
-    return questionAttachment
   }
 
   async deleteManyByQuestionId(questionId: string) {
