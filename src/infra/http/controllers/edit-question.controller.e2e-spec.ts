@@ -42,23 +42,25 @@ describe('Edit question (e2e)', () => {
   })
 
   test('[PUT] /questions/:id', async () => {
-    const { id: authorId } = await studentFactory.makePrismaStudent()
+    const [
+      { id: authorId },
+      firstAttachment,
+      secondAttachment,
+      thirdAttachment,
+    ] = await Promise.all([
+      studentFactory.makePrismaStudent(),
+      attachmentFactory.makePrismaAttachment(),
+      attachmentFactory.makePrismaAttachment(),
+      attachmentFactory.makePrismaAttachment(),
+    ])
 
     const accessToken = jwt.sign({ sub: authorId.toString() })
 
     const [title, content] = ['New title', 'New content']
 
-    const [
-      firstAttachment,
-      secondAttachment,
-      thirdAttachment,
-      { id: questionId },
-    ] = await Promise.all([
-      attachmentFactory.makePrismaAttachment(),
-      attachmentFactory.makePrismaAttachment(),
-      attachmentFactory.makePrismaAttachment(),
-      questionFactory.makePrismaQuestion({ authorId }),
-    ])
+    const { id: questionId } = await questionFactory.makePrismaQuestion({
+      authorId,
+    })
 
     await Promise.all([
       questionAttachmentFactory.makePrismaQuestionAttachment({

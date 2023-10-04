@@ -58,11 +58,7 @@ describe('Create question (e2e)', () => {
 
     const questionOnDatabase = await prisma.question.findFirst({
       include: {
-        attachments: {
-          select: {
-            id: true,
-          },
-        },
+        attachments: true,
       },
       where: {
         title,

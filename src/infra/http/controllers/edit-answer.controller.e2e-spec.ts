@@ -6,6 +6,8 @@ import { JwtService } from '@nestjs/jwt'
 import { Test } from '@nestjs/testing'
 import request from 'supertest'
 import { AnswerFactory } from 'test/factories/make-answer'
+import { AnswerAttachmentFactory } from 'test/factories/make-answer-attachment'
+import { AttachmentFactory } from 'test/factories/make-attachment'
 import { QuestionFactory } from 'test/factories/make-question'
 import { StudentFactory } from 'test/factories/make-student'
 
@@ -15,12 +17,20 @@ describe('Edit answer (e2e)', () => {
   let studentFactory: StudentFactory
   let questionFactory: QuestionFactory
   let answerFactory: AnswerFactory
+  let attachmentFactory: AttachmentFactory
+  let answerAttachmentFactory: AnswerAttachmentFactory
   let jwt: JwtService
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule, DatabaseModule],
-      providers: [StudentFactory, QuestionFactory, AnswerFactory],
+      providers: [
+        StudentFactory,
+        QuestionFactory,
+        AnswerFactory,
+        AttachmentFactory,
+        AnswerAttachmentFactory,
+      ],
     }).compile()
 
     app = moduleRef.createNestApplication()
@@ -28,13 +38,25 @@ describe('Edit answer (e2e)', () => {
     studentFactory = moduleRef.get(StudentFactory)
     questionFactory = moduleRef.get(QuestionFactory)
     answerFactory = moduleRef.get(AnswerFactory)
+    attachmentFactory = moduleRef.get(AttachmentFactory)
+    answerAttachmentFactory = moduleRef.get(AnswerAttachmentFactory)
     jwt = moduleRef.get(JwtService)
 
     await app.init()
   })
 
   test('[PUT] /answers/:id', async () => {
-    const { id: authorId } = await studentFactory.makePrismaStudent()
+    const [
+      { id: authorId },
+      firstAttachment,
+      secondAttachment,
+      thirdAttachment,
+    ] = await Promise.all([
+      studentFactory.makePrismaStudent(),
+      attachmentFactory.makePrismaAttachment(),
+      attachmentFactory.makePrismaAttachment(),
+      attachmentFactory.makePrismaAttachment(),
+    ])
 
     const accessToken = jwt.sign({ sub: authorId.toString() })
 
@@ -47,6 +69,17 @@ describe('Edit answer (e2e)', () => {
       authorId,
     })
 
+    await Promise.all([
+      answerAttachmentFactory.makePrismaAnswerAttachment({
+        attachmentId: firstAttachment.id,
+        answerId,
+      }),
+      answerAttachmentFactory.makePrismaAnswerAttachment({
+        attachmentId: secondAttachment.id,
+        answerId,
+      }),
+    ])
+
     const content = 'New content'
 
     const response = await request(app.getHttpServer())
@@ -54,16 +87,30 @@ describe('Edit answer (e2e)', () => {
       .set('Authorization', `Bearer ${accessToken}`)
       .send({
         content,
+        attachments: [
+          firstAttachment.id.toString(),
+          thirdAttachment.id.toString(),
+        ],
       })
 
     expect(response.statusCode).toBe(204)
 
     const answerOnDatabase = await prisma.answer.findFirst({
+      include: {
+        attachments: true,
+      },
       where: {
         content,
       },
     })
 
     expect(answerOnDatabase).toBeTruthy()
+    expect(answerOnDatabase?.attachments).toHaveLength(2)
+    expect(answerOnDatabase?.attachments).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ id: firstAttachment.id.toString() }),
+        expect.objectContaining({ id: thirdAttachment.id.toString() }),
+      ]),
+    )
   })
 })
