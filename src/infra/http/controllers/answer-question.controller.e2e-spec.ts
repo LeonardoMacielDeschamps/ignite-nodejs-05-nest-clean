@@ -63,11 +63,11 @@ describe('Answer question (e2e)', () => {
     expect(response.statusCode).toBe(201)
 
     const answerOnDatabase = await prisma.answer.findFirst({
-      include: {
-        attachments: true,
-      },
       where: {
         content,
+      },
+      include: {
+        attachments: true,
       },
     })
 

@@ -57,11 +57,11 @@ describe('Create question (e2e)', () => {
     expect(response.statusCode).toBe(201)
 
     const questionOnDatabase = await prisma.question.findFirst({
-      include: {
-        attachments: true,
-      },
       where: {
         title,
+      },
+      include: {
+        attachments: true,
       },
     })
 

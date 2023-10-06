@@ -88,12 +88,12 @@ describe('Edit question (e2e)', () => {
     expect(response.statusCode).toBe(204)
 
     const questionOnDatabase = await prisma.question.findFirst({
-      include: {
-        attachments: true,
-      },
       where: {
         title,
         content,
+      },
+      include: {
+        attachments: true,
       },
     })
 
