@@ -14,6 +14,7 @@ describe('Authenticate student', () => {
     inMemoryStudentsRepository = new InMemoryStudentsRepository()
     fakeHasher = new FakeHasher()
     fakeEncrypter = new FakeEncrypter()
+
     sut = new AuthenticateStudentUseCase(
       inMemoryStudentsRepository,
       fakeHasher,

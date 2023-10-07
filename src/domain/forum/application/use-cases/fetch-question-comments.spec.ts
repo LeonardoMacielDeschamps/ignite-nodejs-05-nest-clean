@@ -15,6 +15,7 @@ describe('Fetch question comments', () => {
     inMemoryQuestionCommentsRepository = new InMemoryQuestionCommentsRepository(
       inMemoryStudentsRepository,
     )
+
     sut = new FetchQuestionCommentsUseCase(inMemoryQuestionCommentsRepository)
   })
 

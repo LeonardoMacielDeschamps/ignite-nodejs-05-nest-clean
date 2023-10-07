@@ -11,6 +11,7 @@ describe('Upload and create attachment', () => {
   beforeEach(() => {
     inMemoryAttachmentsRepository = new InMemoryAttachmentsRepository()
     fakeUploader = new FakeUploader()
+
     sut = new UploadAndCreateAttachmentUseCase(
       inMemoryAttachmentsRepository,
       fakeUploader,
