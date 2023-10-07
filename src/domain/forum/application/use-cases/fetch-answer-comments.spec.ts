@@ -54,15 +54,15 @@ describe('Fetch answer comments', () => {
       expect.arrayContaining([
         expect.objectContaining({
           author: student.name,
-          commentId: firstComment.id.toString(),
+          commentId: firstComment.id,
         }),
         expect.objectContaining({
           author: student.name,
-          commentId: secondComment.id.toString(),
+          commentId: secondComment.id,
         }),
         expect.objectContaining({
           author: student.name,
-          commentId: thirdComment.id.toString(),
+          commentId: thirdComment.id,
         }),
       ]),
     )

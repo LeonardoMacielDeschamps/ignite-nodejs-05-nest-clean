@@ -48,11 +48,11 @@ export class InMemoryQuestionCommentsRepository
         }
 
         return CommentWithAuthor.create({
-          commentId: comment.id.toString(),
+          commentId: comment.id,
           content: comment.content,
           createdAt: comment.createdAt,
           updatedAt: comment.updatedAt,
-          authorId: comment.authorId.toString(),
+          authorId: comment.authorId,
           author: author.name,
         })
       })
