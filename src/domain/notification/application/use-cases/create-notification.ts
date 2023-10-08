@@ -17,7 +17,7 @@ export type CreateNotificationUseCaseResponse = Either<
   }
 >
 
-Injectable()
+@Injectable()
 export class CreateNotificationUseCase {
   constructor(private notificationsRepository: NotificationsRepository) {}
 
